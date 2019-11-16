@@ -1,10 +1,6 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
-inputs:
-  myInput:              # change this
-    description: 'input description here'
-    default: 'default value if applicable'
+name: 'Deploy package documentation'
+description: 'Build and deploy the documentation for a Julia package.'
+author: 'David Anthoff'
 runs:
   using: 'node12'
   main: 'lib/main.js'
