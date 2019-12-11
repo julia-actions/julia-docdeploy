@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import * as exec from '@actions/exec'
+import * as exec from '@actions/exec';
 
 async function run() {
   try {
