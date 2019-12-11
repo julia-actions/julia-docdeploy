@@ -4,3 +4,4 @@ author: 'David Anthoff'
 runs:
   using: 'node12'
   main: 'lib/main.js'
+  wait: 'lib/wait.js'
