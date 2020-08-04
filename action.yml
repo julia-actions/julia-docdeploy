@@ -2,6 +2,10 @@ name: 'Deploy package documentation'
 description: 'Build and deploy the documentation for a Julia package.'
 author: 'David Anthoff'
 
+branding:
+  icon: 'upload'
+  color: 'gray-dark'
+
 runs:
   using: 'composite'
   steps:
