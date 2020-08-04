@@ -1,6 +1,11 @@
 name: 'Deploy package documentation'
 description: 'Build and deploy the documentation for a Julia package.'
 author: 'David Anthoff'
+
 runs:
-  using: 'node12'
-  main: 'lib/main.js'
+  using: 'composite'
+  steps:
+    - run: julia --color=yes --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
+      shell: bash
+    - run: julia --color=yes --project=docs/ docs/make.jl
+      shell: bash
