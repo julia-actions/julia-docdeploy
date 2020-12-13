@@ -27,3 +27,14 @@ You need `DOCUMENTER_KEY` for deployement, which you can generate using Document
 julia> using DocumenterTools, YourPackage
 julia> DocumenterTools.genkeys(YourPackage)
 ```
+
+If you need to build your documentation on a particular Julia version, you can insert
+
+```
+      - uses: julia-actions/setup-julia@v1
+        with:
+          version: nightly               # replace this with whatever version you need
+          show-versioninfo: true         # this causes versioninfo to be printed to the action log
+```
+
+as the first entry after `steps:`.
