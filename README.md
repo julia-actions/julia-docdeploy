@@ -49,25 +49,3 @@ In that case, you can add an input called `prefix` containing the command that w
         with:
           prefix: xvfb-run
 ```
-
-If you only want to add this prefix on certain builds, you can [include additional values into a combination](https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#example-including-additional-values-into-combinations) of your build matrix, e.g.:
-
-```yaml
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macOS-latest]
-        version: ['1.0', '1', 'nightly']
-        arch: [x64]
-        include:
-          - os: ubuntu-latest
-            prefix: xvfb-run
-    steps:
-    # ...
-      - uses: julia-actions/julia-docdeploy@v1
-        with:
-          prefix: ${{ matrix.prefix }}
-    # ...
-```
-
-This will add the prefix `xvfb-run` to all builds where the `os` is `ubuntu-latest`.
