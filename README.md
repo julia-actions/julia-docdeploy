@@ -38,3 +38,14 @@ If you need to build your documentation on a particular Julia version, you can i
 ```
 
 as the first entry after `steps:`.
+
+### Prefixing the Julia command
+
+In some packages, you may want to prefix the `julia` command with another command, e.g. for running tests of certain graphical libraries with `xvfb-run`.
+In that case, you can add an input called `prefix` containing the command that will be inserted to your workflow:
+
+```yaml
+      - uses: julia-actions/julia-docdeploy@v1
+        with:
+          prefix: xvfb-run
+```
