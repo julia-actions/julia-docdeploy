@@ -18,7 +18,7 @@ runs:
     - name: Install GitHubActions.jl in global environment
       run: |
         using Pkg
-        Pkg.add(name="GitHubActionsLogger", version="0.1")
+        Pkg.add(name="GitHubActions", version="0.1")
       shell: julia --color=yes {0}
     - run: |
         # The Julia command that will be executed
