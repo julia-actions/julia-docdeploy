@@ -15,6 +15,11 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Install GitHubActions.jl in global environment
+      run: |
+        using Pkg
+        Pkg.add("GitHubActionsLogger", version="0.1")
+      shell: julia --color=yes {0}
     - run: |
         # The Julia command that will be executed
         julia_cmd=( julia --color=yes --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()' )
@@ -26,10 +31,13 @@ runs:
         # Run the Julia command
         "${julia_cmd[@]}"
       shell: bash
-
     - run: |
         # The Julia command that will be executed
-        julia_cmd=( julia --color=yes --project=docs/ docs/make.jl )
+        julia_cmd=( julia --color=yes --project=docs/ -e '
+            using Logging: global_logger
+            using GitHubActions: GitHubActionsLogger
+            global_logger(GitHubActionsLogger())
+            include("docs/make.jl")' )
 
         # Add the prefix in front of the command if there is one
         prefix="${{ inputs.prefix }}"
