@@ -33,7 +33,7 @@ runs:
       shell: bash
     - run: |
         # The Julia command that will be executed
-        julia_cmd=( julia --color=yes --project=docs/ -e '
+        julia_cmd=( julia --color=yes --code-coverage --project=docs/ -e '
             using Logging: global_logger
             using GitHubActions: GitHubActionsLogger
             global_logger(GitHubActionsLogger())
