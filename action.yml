@@ -35,10 +35,12 @@ runs:
     - run: |
         # The Julia command that will be executed
         julia_cmd=( julia --color=yes --code-coverage --project=docs/ -e '
-            push!(LOAD_PATH, "@docs-logger-env") # access GitHubActions.jl
-            import Logging, GitHubActions
-            Logging.global_logger(GitHubActions.GitHubActionsLogger())
-            pop!(LOAD_PATH)
+            @eval Module() begin
+                push!(LOAD_PATH, "@docs-logger-env") # access GitHubActions.jl
+                import Logging, GitHubActions
+                Logging.global_logger(GitHubActions.GitHubActionsLogger())
+                pop!(LOAD_PATH)
+            end
             include("docs/make.jl")' )
 
         # Add the prefix in front of the command if there is one
