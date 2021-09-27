@@ -19,7 +19,7 @@ runs:
       run: |
         using Pkg
         Pkg.activate("docs-logger-env"; shared=true)
-        Pkg.add(name="GitHubActions", version="0.1")
+        Pkg.add(Pkg.PackageSpec(name="GitHubActions", version="0.1"))
       shell: julia --color=yes {0}
     - run: |
         # The Julia command that will be executed
