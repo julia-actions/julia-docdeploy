@@ -15,7 +15,7 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Install GitHubActions.jl in global environment
+    - name: Install GitHubActions.jl in its own (shared) environment
       run: |
         using Pkg
         Pkg.activate("docs-logger-env"; shared=true)
