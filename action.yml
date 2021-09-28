@@ -34,7 +34,7 @@ runs:
       shell: bash
     - run: |
         # The Julia command that will be executed
-        julia_cmd=( julia --color=yes --code-coverage --project=docs/ -e '
+        julia_cmd=( julia --color=yes --project=docs/ -e '
             @eval Module() begin
                 push!(LOAD_PATH, "@docs-logger-env") # access GitHubActions.jl
                 import Logging, GitHubActions
