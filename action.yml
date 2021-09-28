@@ -23,7 +23,7 @@ runs:
       shell: julia --color=yes {0}
     - run: |
         # The Julia command that will be executed
-        julia_cmd=( julia --color=yes --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()' )
+        julia_cmd=( julia --color=yes --code-coverage --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()' )
 
         # Add the prefix in front of the command if there is one
         prefix="${{ inputs.prefix }}"
