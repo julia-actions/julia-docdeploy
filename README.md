@@ -49,3 +49,13 @@ In that case, you can add an input called `prefix` containing the command that w
         with:
           prefix: xvfb-run
 ```
+
+### Customizing installation of package into docs environment
+
+In some packages, you may want to install the package yourself into the docs environment. For example, if the package is in a subdirectory (but the docs environment is still top-level). In this case, you can pass `install-package: false`.
+
+```yaml
+      - uses: julia-actions/julia-docdeploy@v1
+        with:
+          install-package: false
+```

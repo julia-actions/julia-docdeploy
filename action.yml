@@ -11,7 +11,11 @@ inputs:
     description: 'Value inserted in front of the julia command, e.g. for running xvfb-run julia [...]'
     default: ''
     required: false
-
+  install-package:
+    description: 'Whether or not to install the package with `Pkg.develop` into the `docs` environment'
+    default: true
+    required: false
+    
 runs:
   using: 'composite'
   steps:
@@ -32,6 +36,7 @@ runs:
         # Run the Julia command
         "${julia_cmd[@]}"
       shell: bash
+      if: ${{ inputs.install-package }}
     - run: |
         # The Julia command that will be executed
         julia_cmd=( julia --color=yes --project=docs/ -e '
