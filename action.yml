@@ -14,7 +14,7 @@ inputs:
   install-package:
     description: 'Whether or not to install the package with `Pkg.develop` into the `docs` environment'
     default: true
-    require: false
+    required: false
     
 runs:
   using: 'composite'
@@ -36,7 +36,7 @@ runs:
         # Run the Julia command
         "${julia_cmd[@]}"
       shell: bash
-      if: ${{ install-package }}
+      if: ${{ inputs.install-package }}
     - run: |
         # The Julia command that will be executed
         julia_cmd=( julia --color=yes --project=docs/ -e '
