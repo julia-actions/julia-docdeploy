@@ -59,3 +59,14 @@ In some packages, you may want to install the package yourself into the docs env
         with:
           install-package: false
 ```
+
+### Setting terminal width
+
+For some doctests, the default terminal width of GitHub Runners is too narrow.
+To change this, set the `COLUMNS` environment variable.
+
+```yaml
+      - uses: julia-actions/julia-docdeploy@v1
+        env:
+          COLUMNS: '200'
+```
