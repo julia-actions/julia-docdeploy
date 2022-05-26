@@ -11,6 +11,8 @@ on:
 
 jobs:
   Documenter:
+    permissions:
+      contents: write
     name: Documentation
     runs-on: ubuntu-latest
     steps:
@@ -19,13 +21,6 @@ jobs:
       - uses: julia-actions/julia-docdeploy@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DOCUMENTER_KEY: ${{ secrets.DOCUMENTER_KEY }}
-```
-
-You need `DOCUMENTER_KEY` for deployement, which you can generate using DocumenterTools:
-```
-julia> using DocumenterTools, YourPackage
-julia> DocumenterTools.genkeys(YourPackage)
 ```
 
 If you need to build your documentation on a particular Julia version, you can insert
