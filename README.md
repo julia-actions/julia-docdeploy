@@ -11,7 +11,8 @@ on:
 
 jobs:
   Documenter:
-    permissions: write-all
+    permissions:
+      contents: write
     name: Documentation
     runs-on: ubuntu-latest
     steps:
