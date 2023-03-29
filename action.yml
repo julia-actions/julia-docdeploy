@@ -36,7 +36,7 @@ runs:
         # Run the Julia command
         "${julia_cmd[@]}"
       shell: bash
-      if: ${{ inputs.install-package }}
+      if: ${{ inputs.install-package == 'true'}}
     - run: |
         # The Julia command that will be executed
         julia_cmd=( julia --color=yes --project=docs/ -e '
