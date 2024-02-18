@@ -26,7 +26,7 @@ jobs:
 
 If you need to build your documentation on a particular Julia version, you can insert
 
-```
+```yaml
       - uses: julia-actions/setup-julia@v1
         with:
           version: nightly               # replace this with whatever version you need
