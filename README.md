@@ -5,7 +5,7 @@
 name: Documenter
 on:
   push:
-    branches: [master]
+    branches: [main, master]
     tags: [v*]
   pull_request:
 
