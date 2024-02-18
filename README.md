@@ -5,7 +5,7 @@
 name: Documenter
 on:
   push:
-    branches: [master]
+    branches: [main, master]
     tags: [v*]
   pull_request:
 
@@ -17,7 +17,7 @@ jobs:
     name: Documentation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: julia-actions/julia-buildpkg@v1  # if package requires Pkg.build()
       - uses: julia-actions/julia-docdeploy@v1
         env:
@@ -26,7 +26,7 @@ jobs:
 
 If you need to build your documentation on a particular Julia version, you can insert
 
-```
+```yaml
       - uses: julia-actions/setup-julia@v1
         with:
           version: nightly               # replace this with whatever version you need
