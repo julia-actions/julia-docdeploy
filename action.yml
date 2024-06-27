@@ -31,7 +31,7 @@ runs:
 
         # Add the prefix in front of the command if there is one
         prefix=( ${{ inputs.prefix }} )
-        [[ -n ${prefix[*]} ]] && julia_cmd=( "${prefix[@]}" "${julia_cmd[@]}" )
+        [[ ${#prefix[@]} -gt 0 ]] && julia_cmd=( "${prefix[@]}" "${julia_cmd[@]}" )
 
         # Run the Julia command
         "${julia_cmd[@]}"
