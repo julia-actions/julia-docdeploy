@@ -36,8 +36,8 @@ runs:
         julia_cmd=( julia --color=yes --code-coverage --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()' )
 
         # Add the prefix in front of the command if there is one
-        prefix="${{ inputs.prefix }}"
-        [[ -n $prefix ]] && julia_cmd=( "$prefix" "${julia_cmd[@]}" )
+        prefix=( ${{ inputs.prefix }} )
+        [[ ${#prefix[@]} -gt 0 ]] && julia_cmd=( "${prefix[@]}" "${julia_cmd[@]}" )
 
         # Run the Julia command
         "${julia_cmd[@]}"
