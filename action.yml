@@ -15,6 +15,10 @@ inputs:
     description: 'Whether or not to install the package with `Pkg.develop` into the `docs` environment'
     default: true
     required: false
+  project:
+    description: 'Directory that contains the folder `docs` to deploy from'
+    default: '.'
+    required: false
     
 runs:
   using: 'composite'
@@ -25,7 +29,9 @@ runs:
         Pkg.activate("docs-logger-env"; shared=true)
         Pkg.add(Pkg.PackageSpec(name="GitHubActions", version="0.1"))
       shell: julia --color=yes {0}
-    - run: |
+      working-directory: ${{inputs.project}}
+    - name: Install the current package into the `docs` environment
+      run: |
         # The Julia command that will be executed
         julia_cmd=( julia --color=yes --code-coverage --project=docs/ -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()' )
 
@@ -36,8 +42,10 @@ runs:
         # Run the Julia command
         "${julia_cmd[@]}"
       shell: bash
+      working-directory: ${{inputs.project}}
       if: ${{ inputs.install-package == 'true'}}
-    - run: |
+    - name: Build the documentation
+      run: |
         # The Julia command that will be executed
         julia_cmd=( julia --color=yes --project=docs/ -e '
             @eval Module() begin
@@ -55,3 +63,4 @@ runs:
         # Run the Julia command
         "${julia_cmd[@]}"
       shell: bash
+      working-directory: ${{inputs.project}}
