@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: julia-actions/setup-julia@v2
         with:
-          version: '1.10'                      # replace this with whatever version you need
+          version: '1'                         # replace this with whatever version you need
           show-versioninfo: true               # this causes versioninfo to be printed to the action log
       - uses: julia-actions/julia-buildpkg@v1  # if package requires Pkg.build()
       - uses: julia-actions/julia-docdeploy@v1
