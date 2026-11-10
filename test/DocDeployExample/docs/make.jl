@@ -1,3 +1,7 @@
+# the action's setup steps should leave caches that this build can use
+Base.isprecompiled(Base.identify_package("Documenter")) ||
+    error("Documenter has no cache this build can use, so it would be precompiled again")
+
 using Documenter, DocDeployExample, Logging
 
 # the action sets its own logger before running this file
