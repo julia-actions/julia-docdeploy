@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "master"
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Julia ${{ matrix.version }} - ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - "lts"
+          - "1" # automatically expands to the latest stable 1.x release of Julia
+          - "pre"
+          - "nightly"
+        os:
+          - ubuntu-latest
+        include:
+          - version: "1"
+            os: macOS-latest
+          - version: "1"
+            os: windows-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: julia-actions/setup-julia@5c9647d97b78a5debe5164e9eec09d653d29bd71 # v2.6.1
+        with:
+          version: ${{ matrix.version }}
+
+      # Builds the docs of a small package in this repository. Its make.jl does not deploy.
+      - uses: ./
+        with:
+          project: test/DocDeployExample
+
+      - name: Verify that the docs were built
+        run: test -f test/DocDeployExample/docs/build/index.html
+        shell: bash

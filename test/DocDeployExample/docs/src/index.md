@@ -1,0 +1,5 @@
+# DocDeployExample
+
+```@docs
+DocDeployExample.double
+```
