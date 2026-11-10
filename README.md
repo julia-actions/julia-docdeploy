@@ -17,12 +17,12 @@ jobs:
     name: Documentation
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: julia-actions/setup-julia@v2
+      - uses: actions/checkout@v7
+      - uses: julia-actions/setup-julia@v3
         with:
           version: '1'                         # replace this with whatever version you need
           show-versioninfo: true               # this causes versioninfo to be printed to the action log
-      - uses: julia-actions/cache@v2              # cache using https://github.com/julia-actions/cache
+      - uses: julia-actions/cache@v3           # cache using https://github.com/julia-actions/cache
       - uses: julia-actions/julia-buildpkg@v1  # if package requires Pkg.build()
       - uses: julia-actions/julia-docdeploy@v1
         env:
@@ -48,6 +48,17 @@ In some packages, you may want to install the package yourself into the docs env
       - uses: julia-actions/julia-docdeploy@v1
         with:
           install-package: false
+```
+
+### Building docs for a package in a subdirectory
+
+If the package and its `docs` folder are in a subdirectory of the repository, pass that directory as `project`.
+The action then runs from there, so `docs/make.jl` and the package are found relative to it.
+
+```yaml
+      - uses: julia-actions/julia-docdeploy@v1
+        with:
+          project: lib/MyPackage
 ```
 
 ### Setting terminal width
