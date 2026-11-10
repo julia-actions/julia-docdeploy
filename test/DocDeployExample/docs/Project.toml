@@ -1,0 +1,9 @@
+[deps]
+DocDeployExample = "88623743-181b-4564-b32d-893a250a1769"
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+
+[sources]
+DocDeployExample = {path = "/private/tmp/claude-501/-Users-ian-Documents-GitHub-julia/92633f1a-e746-4795-ae09-2c70068d4250/scratchpad/docdeploy/test/DocDeployExample"}
+
+[compat]
+Documenter = "1"
